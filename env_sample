@@ -1,0 +1,4 @@
+DB_PASSWORD=password
+DB_NAME=pikabu
+DB_DSN=root:${DB_PASSWORD}@tcp(mysql:3306)/${DB_NAME}?charset=utf8mb4&parseTime=True&loc=Local
+TOKEN=YOUR_TOKEN_HERE

@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  tgbot:
+    build: . # build from sources in this folder
+    container_name: gopikabu
+    depends_on: # depends on other service
+      - mysql
+    env_file:
+      - .env
+    restart: always
+  mysql:
+    image: mysql
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql:/var/lib/mysql
+#  pgdb:
+#    image: postgres # name of image from dockerhub
+#    env_file:
+#      - .env
+#    container_name: pikabu_db
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data/
+volumes:
+  mysql:
+    driver: local
+
+
